@@ -3,7 +3,8 @@ lathosgr=[]
 swstagr=[]
 meg=len(lexh)
 x="_"
-   
+me_tono    = ["ά", "έ", "ή", "ί", "ό", "ύ", "ώ", "ϊ", "ϋ", "ΐ", "ΰ", "Ά", "Έ", "Ή", "Ί", "Ό", "Ύ", "Ώ", "Ϊ", "Ϋ"]
+xwris_tono = ["α", "ε", "η", "ι", "ο", "υ", "ω", "ι", "υ", "ι", "υ", "Α", "Ε", "Η", "Ι", "Ο", "Υ", "Ω", "Ι", "Υ"]
 for i in range(0,meg-1):
     x=x+" _"
         
@@ -15,8 +16,11 @@ print(x)
 while lathi<=5 and vrethike==False:
     flag=True
     while flag==True:   
-        gr=input("Δώσε γράμμα")   
-        if len(gr)==1 and gr.isalpha() and gr!="" and gr not in lathosgr and gr not in swstagr:
+        gr=input("Δώσε γράμμα")  
+        if gr in me_tono:
+            thesh=me_tono.index(gr)
+            gr=xwris_tono[thesh]
+        if len(gr)==1 and gr.isalpha() and gr!="" and gr.lower() not in lathosgr and gr.lower() not in swstagr and gr.upper() not in lathosgr and gr.upper() not in swstagr:
             flag=False
         else:
             flag=True 
@@ -25,11 +29,17 @@ while lathi<=5 and vrethike==False:
         
     flag2=False
     j=0
-    thesh=[]
+    thesh2=[]
     for i in lexh:
+        if i=="σ" and gr=="ς":
+            flag2=True 
+            gr="σ"
+        elif i=="ς" and gr=="σ":
+            flag2=True 
+            gr="ς"
         if i.lower()==gr or i.upper()==gr:
             flag2=True
-            thesh.append(j)
+            thesh2.append(j)
         j=j+2    
 
     if flag2==True:
@@ -41,16 +51,17 @@ while lathi<=5 and vrethike==False:
         lathosgr.append(gr)
         print(f"Έχετε ακόμα {6-lathi} προσπάθειες")
     
-    print(swstagr)
+
         
     if flag2==True:
-        for i in thesh:
+        for i in thesh2:
             x=list(x)
             x[i]=gr
             x="".join(x)    
     if "_" not in x:
         vrethike=True
     print(x)
+    gr=gr.lower()#### 
     
 if  vrethike==True:
     print("Βρήκατε τη λέξη!")
