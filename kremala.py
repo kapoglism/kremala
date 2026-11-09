@@ -11,9 +11,28 @@ x="_"
 me_tono    = ["ά", "έ", "ή", "ί", "ό", "ύ", "ώ", "ϊ", "ϋ", "ΐ", "ΰ", "Ά", "Έ", "Ή", "Ί", "Ό", "Ύ", "Ώ", "Ϊ", "Ϋ"]
 xwris_tono = ["α", "ε", "η", "ι", "ο", "υ", "ω", "ι", "υ", "ι", "υ", "Α", "Ε", "Η", "Ι", "Ο", "Υ", "Ω", "Ι", "Υ"]
 
-for i in range(0,meg-1):
-    x=x+" _"
-        
+#=======================================Συναρτήσεις======================================================    
+def paules(x, meg):
+    for i in range(0,meg-1):
+        x=x+" _"  
+    return(x)
+
+def tonos(gr):
+    thesh=me_tono.index(gr)
+    gr=xwris_tono[thesh]
+    return gr
+
+def topothet_gr(flag2,thesh2,x,gr):    
+        if flag2==True:
+            for i in thesh2:
+                x=list(x)
+                x[i]=gr
+                x="".join(x)    
+        return x
+
+#========================================Κυρίο πρόγραμμα===============================================
+x=paules(x,meg)  
+      
 vrethike=False
 lathi=0
 print(f"Η λέξη έχει {meg} γράμματα: ")
@@ -23,9 +42,9 @@ while lathi<=5 and vrethike==False:
     flag=True
     while flag==True:   
         gr=input("Δώσε γράμμα")  
+        
         if gr in me_tono:
-            thesh=me_tono.index(gr)
-            gr=xwris_tono[thesh]
+            gr=tonos(gr)
         if len(gr)==1 and gr.isalpha() and gr!="" and gr.lower() not in lathosgr and gr.lower() not in swstagr and gr.upper() not in lathosgr and gr.upper() not in swstagr:
             flag=False
         else:
@@ -58,18 +77,15 @@ while lathi<=5 and vrethike==False:
         print(f"Έχετε ακόμα {6-lathi} προσπάθειες")
     
 
-        
-    if flag2==True:
-        for i in thesh2:
-            x=list(x)
-            x[i]=gr
-            x="".join(x)    
-    if "_" not in x:
-        vrethike=True
-    print(x)
-    gr=gr.lower()#### 
     
+    x=topothet_gr(flag2,thesh2,x,gr)
+    print(x)
+    gr=gr.lower()
+    if "_" not in x:
+            vrethike=True
+               
 if  vrethike==True:
     print("Βρήκατε τη λέξη!")
 else:
     print(f"Δεν βρήκατε τη λέξη! Η λέξη ήταν: {lexh}")
+    
