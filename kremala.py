@@ -3,13 +3,9 @@ lexeis = ["θαλασσα", "ελεφαντας", "πεταλουδα", "σου�
           "κατσαρολα", "λουλουδι", "φεγγαρι", "ποδηλατο", "μπαλκονι",
           "σοκολατα", "καραβι", "χελωνα", "βιβλιοθηκη", "ουρανος",
           "δελφινι", "παγωτο", "κουταλι", "πορτοκαλι", "ηφαιστειο"]
-lexh=rd.choice(lexeis)
-lathosgr=[]
-swstagr=[]
-meg=len(lexh)
-x="_"
-me_tono    = ["ά", "έ", "ή", "ί", "ό", "ύ", "ώ", "ϊ", "ϋ", "ΐ", "ΰ", "Ά", "Έ", "Ή", "Ί", "Ό", "Ύ", "Ώ", "Ϊ", "Ϋ"]
-xwris_tono = ["α", "ε", "η", "ι", "ο", "υ", "ω", "ι", "υ", "ι", "υ", "Α", "Ε", "Η", "Ι", "Ο", "Υ", "Ω", "Ι", "Υ"]
+
+
+
 
 #=======================================Συναρτήσεις======================================================    
 def paules(x, meg):
@@ -31,63 +27,76 @@ def topothet_gr(flag2,thesh2,x,gr):
         return x
 
 #========================================Κύριο πρόγραμμα===============================================
-x=paules(x,meg)  
-      
-vrethike=False
-lathi=0
-print(f"Η λέξη έχει {meg} γράμματα: ")
-print(x)
+xana=True
+while xana==True:
 
-while lathi<=5 and vrethike==False:
-    flag=True
-    while flag==True: 
-        print(f"Τα λάθος γράμματα που διαλέξατε είναι: {','.join(lathosgr)}" )
-        gr=input("Δώσε γράμμα")  
+    lexh=rd.choice(lexeis)
+    lathosgr=[]
+    swstagr=[]
+    meg=len(lexh)
+    x="_"
+    me_tono= ["ά", "έ", "ή", "ί", "ό", "ύ", "ώ", "ϊ", "ϋ", "ΐ", "ΰ", "Ά", "Έ", "Ή", "Ί", "Ό", "Ύ", "Ώ", "Ϊ", "Ϋ"]
+    xwris_tono = ["α", "ε", "η", "ι", "ο", "υ", "ω", "ι", "υ", "ι", "υ", "Α", "Ε", "Η", "Ι", "Ο", "Υ", "Ω", "Ι", "Υ"]
+    x=paules(x,meg)  
         
-        
-        if gr in me_tono:
-            gr=tonos(gr)
-        if len(gr)==1 and gr.isalpha() and gr!="" and gr.lower() not in lathosgr and gr.lower() not in swstagr and gr.upper() not in lathosgr and gr.upper() not in swstagr:
-            flag=False
-        else:
-            flag=True 
-        if flag==True:
-            print("Λάθος εισαγωγή")
-        
-    flag2=False
-    j=0
-    thesh2=[]
-    for i in lexh:
-        if i=="σ" and gr=="ς":
-            flag2=True 
-            gr="σ"
-        elif i=="ς" and gr=="σ":
-            flag2=True 
-            gr="ς"
-        if i.lower()==gr or i.upper()==gr:
-            flag2=True
-            thesh2.append(j)
-        j=j+2    
-
-    if flag2==True:
-        print(f"Υπάρχει το γράμμα : {gr}")
-        swstagr.append(gr)
-    else:  
-        print(f"Δεν υπάρχει το γράμμα : {gr}")  
-        lathi=lathi+1
-        lathosgr.append(gr)
-        print(f"Έχετε ακόμα {6-lathi} προσπάθειες")
-    
-
-    
-    x=topothet_gr(flag2,thesh2,x,gr)
+    vrethike=False
+    lathi=0
+    print(f"Η λέξη έχει {meg} γράμματα: ")
     print(x)
-    gr=gr.lower()
-    if "_" not in x:
-            vrethike=True
-               
-if  vrethike==True:
-    print("Βρήκατε τη λέξη!")
-else:
-    print(f"Δεν βρήκατε τη λέξη! Η λέξη ήταν: {lexh}")
-    
+
+    while lathi<=5 and vrethike==False:
+        flag=True
+        while flag==True: 
+            print(f"Τα λάθος γράμματα που διαλέξατε είναι: {','.join(lathosgr)}" )
+            gr=input("Δώσε γράμμα")  
+            
+            
+            if gr in me_tono:
+                gr=tonos(gr)
+            if len(gr)==1 and gr.isalpha() and gr!="" and gr.lower() not in lathosgr and gr.lower() not in swstagr and gr.upper() not in lathosgr and gr.upper() not in swstagr:
+                flag=False
+            else:
+                flag=True 
+            if flag==True:
+                print("Λάθος εισαγωγή")
+            
+        flag2=False
+        j=0
+        thesh2=[]
+        for i in lexh:
+            if i=="σ" and gr=="ς":
+                flag2=True 
+                gr="σ"
+            elif i=="ς" and gr=="σ":
+                flag2=True 
+                gr="ς"
+            if i.lower()==gr or i.upper()==gr:
+                flag2=True
+                thesh2.append(j)
+            j=j+2    
+
+        if flag2==True:
+            print(f"Υπάρχει το γράμμα : {gr}")
+            swstagr.append(gr)
+        else:  
+            print(f"Δεν υπάρχει το γράμμα : {gr}")  
+            lathi=lathi+1
+            lathosgr.append(gr)
+            print(f"Έχετε ακόμα {6-lathi} προσπάθειες")
+        
+
+        
+        x=topothet_gr(flag2,thesh2,x,gr)
+        print(x)
+        gr=gr.lower()
+        if "_" not in x:
+                vrethike=True
+                
+    if  vrethike==True:
+        print("Βρήκατε τη λέξη!")
+    else:
+        print(f"Δεν βρήκατε τη λέξη! Η λέξη ήταν: {lexh}")
+        
+    apant=input("Θες να ξαναπαίξεις; (Ναι/Οχι)")
+    if apant=="Οχι":
+        xana=False
