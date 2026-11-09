@@ -30,7 +30,7 @@ def topothet_gr(flag2,thesh2,x,gr):
                 x="".join(x)    
         return x
 
-#========================================Κυρίο πρόγραμμα===============================================
+#========================================Κύριο πρόγραμμα===============================================
 x=paules(x,meg)  
       
 vrethike=False
@@ -40,8 +40,10 @@ print(x)
 
 while lathi<=5 and vrethike==False:
     flag=True
-    while flag==True:   
+    while flag==True: 
+        print(f"Τα λάθος γράμματα που διαλέξατε είναι: {','.join(lathosgr)}" )
         gr=input("Δώσε γράμμα")  
+        
         
         if gr in me_tono:
             gr=tonos(gr)
